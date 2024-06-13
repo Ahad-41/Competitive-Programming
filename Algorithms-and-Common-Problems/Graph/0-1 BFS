@@ -1,0 +1,25 @@
+const ll N = 2e5+7;
+vector<Pair> adjList[N];
+ll cost[N];
+
+void bfs(ll rootNode) {
+    for (auto &u : cost) u = 1e18;
+    cost[rootNode] = 0;
+    
+    deque<ll> dq;
+    dq.push_front(rootNode);
+
+    while (!dq.empty()) {
+        ll currNode = dq.front();
+        dq.pop_front();
+        for (auto u : adjList[currNode]) {
+            ll v = u.first;
+            ll w = u.second;
+            if (cost[currNode] + w < cost[v]) {
+                cost[v] = cost[currNode] + w;
+                if (w == 1) dq.push_back(v);
+                else dq.push_front(v);
+            }
+        }
+    }
+}
