@@ -1,46 +1,75 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-
 const ll M = 1e9+7;
-const ll N = 2;
 
-ll n = 2, m = 2;
 struct Matrix {
-    ll mat[N][N];
-    Matrix(initializer_list<initializer_list<ll>> list) {
-        int i = 0, j = 0;
-        for (auto row : list) {
-            j = 0;
-            for (auto val : row) {
-                mat[i][j++] = val;
+    ll mat[52][52];
+    ll row, col;
+ 
+    Matrix() {
+        memset(mat, 0, sizeof(mat));
+    }
+    Matrix(ll a, ll b) {
+        row = a, col = b; 
+        memset(mat, 0, sizeof(mat));
+    }
+ 
+    Matrix operator*(const Matrix &p) const {
+        assert(col == p.row);
+        Matrix temp;
+        temp.row = row;
+        temp.col = p.col;
+        for (ll i = 0; i < temp.row; i++) { 
+            for (ll j = 0; j < temp.col; j++) { 
+                ll sum = 0;
+                for (ll k = 0; k <col;  k++) sum = (sum + ((mat[i][k]) * (p.mat[k][j])) % M) % M;
+                temp.mat[i][j] = sum;
             }
-            i++;
         }
+        return temp;
     }
 
-    Matrix() {}
-} unit;
-
-Matrix matrixMul(Matrix a, Matrix b) {
-    Matrix ans;
-    for (ll i = 0; i < n; i++) {
-        for (ll j = 0; j < m; j++) {
-            ll sum = 0;
-            for (ll k = 0; k < n; k++) sum = (sum + ((a.mat[i][k] * b.mat[k][j])% M)) % M;
-            ans.mat[i][j] = sum;
+    Matrix operator+ (const Matrix &p) const {
+        assert(row == p.row and col == p.col);
+        Matrix temp;
+        temp.row = row;
+        temp.col = col;
+        for (ll i = 0; i < temp.row; i++) { 
+            for (ll j = 0; j < temp.col; j++) temp.mat[i][j] = ((mat[i][j]) + (p.mat[i][j])) % M;
         }
+        return temp;
     }
-    return ans;
-}
-
-Matrix matrixExpo(Matrix a, ll p) {
-    if (p == 0) return unit;
-
-    Matrix ans = matrixExpo(a, p/2);
-    if (p % 2 == 0) return matrixMul(ans, ans);
-    else return matrixMul(a, matrixMul(ans, ans));
-}
+ 
+    Matrix identity() {
+        Matrix temp;
+        temp.row = row;
+        temp.col = col;
+        for (ll i = 0; i < row; i++) temp.mat[i][i] = 1;
+        return temp;
+    }
+ 
+    Matrix pow(ll pow) {
+        Matrix temp = (*this);
+        Matrix ans = (*this).identity();
+        while (pow) {
+            if (pow & 1) ans = ans*temp;
+            temp = temp*temp;
+            pow /= 2;
+        }
+        return ans;
+    }
+ 
+    void show() {
+        cout << "-----------------------------\n";
+        for (ll i = 0; i < row; i++) { 
+            for (ll j = 0; j < col; j++) cout << mat[i][j] << " ";
+            cout << "\n";
+        } 
+        cout << "-----------------------------\n";
+    } 
+ 
+};
 
 signed main()
 {
@@ -52,11 +81,16 @@ signed main()
         return 0;
     }
 
-    unit = Matrix({{1, 0}, {0, 1}});
-    Matrix a = {{1, 1}, {1, 0}};
-    Matrix b = {{1, 0}, {0, 0}};
-    Matrix ans = matrixExpo(a, n-2);
-    matrixMul(ans, b);
+    Matrix a(2, 2);
+    a.mat[0][0] = a.mat[0][1] = a.mat[1][0] = 1;
+    a.mat[1][1] = 0;
+    
+    Matrix b(2, 2);
+    b.mat[0][0] = 1;
+    b.mat[0][1] = b.mat[1][0] = b.mat[1][1] = 0;
+    
+    a = a.pow(n-2);
+    a = a*b;
 
-    cout << (ans.mat[0][0] + ans.mat[1][0]) % M;
- }
+    cout << (a.mat[0][0] + a.mat[1][0]) % M;
+}
