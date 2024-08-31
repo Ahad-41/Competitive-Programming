@@ -40,15 +40,15 @@ int main() {
         floydWarshall(100);
 
         double sum = 0, cnt = 0;
-		for (i = 1; i <= 100; i++) {
-			for (j = 1; j <= 100; j++) {
-				if (i == j || check[i] == 0 || check[j] == 0) continue;
-				
-				sum += dist[i][j];
-				cnt++;
-			}
-		}
+	for (i = 1; i <= 100; i++) {
+	    for (j = 1; j <= 100; j++) {
+		if (i == j || check[i] == 0 || check[j] == 0) continue;
+		
+		sum += dist[i][j];
+	        cnt++;
+	    }
+	}
 
-		printf("Case %d: average length between pages = %.3lf clicks\n", curr++, sum/cnt);
+	printf("Case %d: average length between pages = %.3lf clicks\n", curr++, sum/cnt);
     }
 }
