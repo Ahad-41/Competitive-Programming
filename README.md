@@ -16,4 +16,4 @@
 | UVa          | [Ahad_41](https://onlinejudge.org/index.php?option=com_comprofiler&Itemid=3) | 40   |
 | HackerEarth  | [ahad.cse8.bu](https://www.hackerearth.com/@ahad.cse8.bu)                    | 20   |  
 | SPOJ         | [ahad_41](https://www.spoj.com/myaccount/)                                   | 16   |
-| ***Total***  |                                                                              | ***2896*** |
+| ***Total***  |                                                                              | ***3497*** |
