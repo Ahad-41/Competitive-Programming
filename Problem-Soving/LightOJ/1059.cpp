@@ -56,7 +56,6 @@ signed main()
         ll ans = 0, cc = 0;
         for (ll i = 1; i <= n; i++) {
             if (alreadyTaken[i]) continue;
-            ll curr = 
             ans += mst(i);
             cc++;
         }
