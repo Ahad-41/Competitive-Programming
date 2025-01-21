@@ -47,6 +47,7 @@ ll go(ll u, ll v, ll k) {
 }
 
 signed main() {
+	ios::sync_with_stdio(0); cin.tie(0);
 	ll n; cin >> n;
 	for (ll i = 1; i < n; i++) {
         ll u, v; cin >> u >> v;
