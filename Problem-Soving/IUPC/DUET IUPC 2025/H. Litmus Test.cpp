@@ -4,8 +4,7 @@ typedef long long ll;
 
 signed main() {
     ios_base::sync_with_stdio(); cin.tie();
-    ll tt = 1; 
-    cin >> tt;
+    ll tt = 1; cin >> tt;
 
     test:
     while (tt--) {
