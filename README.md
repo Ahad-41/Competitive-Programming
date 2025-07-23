@@ -4,7 +4,7 @@
 | Online Judge | Username | Total Problem Solve | Max Rating |
 |:------------:|:--------:|:-----------:|:----------:|
 | Codeforces   | [Ahad](https://codeforces.com/profile/Ahad)                                  | 2451 | 1696 |
-| CodeChef     | [ahad_41](https://www.codechef.com/users/ahad_41)                            | 225  | 1735 |
+| CodeChef     | [ahad_41](https://www.codechef.com/users/ahad_41)                            | 225  | 1832 |
 | Vjudge       | [ahad_cse8](https://vjudge.net/user/ahad_cse8)                               | 292  |
 | LeetCode     | [Ahad_41](https://leetcode.com/u/Ahad_41)                                    | 161  | 1758 |
 | Beecrowd     | [SecretCoder](https://judge.beecrowd.com/en/profile/646529)                  | 133  |
