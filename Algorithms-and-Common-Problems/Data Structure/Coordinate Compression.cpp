@@ -41,11 +41,11 @@ signed main() {
     ll n; cin >> n;
 	
     unordered_map<ll, ll> cnt;
-		ll arr[n];
-		for (auto &u : arr) {
-			cin >> u;
-			cnt[u]++;
-		}
+	ll arr[n];
+	for (auto &u : arr) {
+		cin >> u;
+		cnt[u]++;
+	}
 	
     ll curr = 1;
     vector<ll> v;
@@ -59,11 +59,11 @@ signed main() {
     }
 	
     ordered_set<ll> s;
-		for (auto &u : arr) {
-        update(numbering[u], u, n);
-        s.insert(u);
+	for (auto &u : arr) {
+		update(numbering[u], u, n);
+		s.insert(u);
 		
-				ll bigCnt = s.size() - s.order_of_key(u);
-				cout << (query(numbering[u])*bigMod(bigCnt, M-2)) % M << " ";
-		}
+		ll bigCnt = s.size() - s.order_of_key(u);
+		cout << (query(numbering[u])*bigMod(bigCnt, M-2)) % M << " ";
+	}
 }
