@@ -29,3 +29,5 @@ for ((i = 1; ; i++)); do
         break
     fi
 done
+
+# Command: bash checker.sh
