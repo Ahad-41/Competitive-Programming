@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
-const ll N = 1e5+7;
+const ll N = 2e5+7;
 ll n, m, startNode, endNode, parent[N];
 vector<ll> adjList[N];
 bool visited[N];
@@ -23,8 +23,10 @@ bool dfs(ll currNode, ll par = -1) {
     return false;
 }
 
-int main() {
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
     cin >> n >> m;
+
     while (m--) {
         ll u, v; cin >> u >> v;
         adjList[u].push_back(v);
@@ -32,12 +34,10 @@ int main() {
     }
     
     startNode = -1;
-    for (ll i = 1; i <= n; i++) {
-        if (!visited[i] and dfs(i)) break;
-    }
+    for (ll i = 1; i <= n; i++) if (!visited[i] and dfs(i)) break;
 
     if (startNode == -1) {
-        cout << "IMPOSSIBLE" << endl;
+        cout << "IMPOSSIBLE\n";
         return 0;
     }
 
@@ -51,7 +51,7 @@ int main() {
     } 
     cycle.push_back(startNode);
 
-    cout << cycle.size() << endl;
-    for (ll v : cycle) cout << v << " ";
-    cout << endl;
+    cout << cycle.size() << "\n";
+    for (auto &u : cycle) cout << u << " ";
+    cout << "\n";
 }
