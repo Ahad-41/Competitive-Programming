@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
 vector<ll> calcLPS(string s) {
     ll n = s.length();
@@ -14,14 +14,14 @@ vector<ll> calcLPS(string s) {
     return lpsArray;
 }
 
-ll kmp(string text, string pattern) {
-    vector<ll> lpsArray = calcLPS(pattern);
+ll kmp(string s, string t) {
+    vector<ll> lpsArray = calcLPS(t);
 
-    ll n = text.length(), m = pattern.length();
+    ll n = s.length(), m = t.length();
     ll matches = 0;
     for (ll i = 0, j = 0; i < n; i++) {
-        while (j > 0 and pattern[j] != text[i]) j = lpsArray[j-1];
-        if (pattern[j] == text[i]) j++;
+        while (j > 0 and t[j] != s[i]) j = lpsArray[j-1];
+        if (t[j] == s[i]) j++;
         if (j == m) {
             matches++;
             j = lpsArray[j-1];
@@ -31,11 +31,12 @@ ll kmp(string text, string pattern) {
     return matches;
 }
 
-int main()
-{
-    string text, pattern;
-    getline(cin, text);
-    getline(cin, pattern);
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    
+    string s, t;
+    getline(cin, s);
+    getline(cin, t);
 
-    cout << (kmp(text, pattern) ? "Found" : "Not Found") << endl;
+    cout << (kmp(s, t) ? "Found\n" : "Not Found\n");
 }
