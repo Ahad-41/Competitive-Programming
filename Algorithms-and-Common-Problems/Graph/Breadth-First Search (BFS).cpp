@@ -1,4 +1,4 @@
-const ll N = 1e5+7;
+const ll N = 2e5+7;
 vector <ll> adjList[N];
 bool visited[N];
 
