@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef int ll;
+typedef long long ll;
 
 string s, t;
 ll dp[5005][5005];
@@ -17,8 +17,7 @@ ll func(ll i, ll j) {
     return dp[i][j] = ans;
 }
  
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
     cin >> s >> t;
     
