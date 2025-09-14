@@ -2,34 +2,32 @@
 using namespace std;
 typedef long long ll;
 
-const ll N = 2e5+7;
-vector<ll> primes;
+const ll N = 1e6+7;
+bool check[N];
+vector<ll> prime;
 
 void sieve() {
-    bool isPrime[N];
-    memset(isPrime, true, sizeof(isPrime));
-
     for (ll i = 3; i*i < N; i += 2) {
-        if (isPrime[i]) {
-            for (ll j = i*i; j <= N; j += i) isPrime[j] = false;
-        }   
-    } 
+        if (!check[i]) {
+            for (ll j = i*i; j < N; j += i) check[j] = true;
+        }
+    }
 
-    primes.push_back(2);
-    for (ll i = 3; i <= N; i += 2) if (isPrime[i]) primes.push_back(i);
+    prime.push_back(2);
+    for (ll i = 3; i < N; i += 2) if (!check[i]) prime.push_back(i);
 }
 
-void segmentedSieve (ll l, ll r) {
+void segmentedSieve(ll l, ll r) {
     ll limit = r-l+1;
     bool isPrime[limit];
     memset(isPrime, true, sizeof(isPrime));
-    
-    for (ll i = 0; primes[i] * primes[i] <= r; i++) {
-        ll base = (l/primes[i]) * primes[i];
-        if (base < l) base += primes[i];
 
-        for (ll j = base; j <= r; j += primes[i]) isPrime[j-l] = false;
-        if (base == primes[i]) isPrime[base-l] = true;
+    for (ll i = 0; prime[i]*prime[i] <= r; i++) {
+        ll base = (l / prime[i]) * prime[i];
+        if (base < l) base += prime[i];
+
+        for (ll j = base; j <= r; j += prime[i]) isPrime[j-l] = false;
+        if (base == prime[i]) isPrime[base-l] = true;
     }
 
     for (ll i = 0; i < limit; i++) if (isPrime[i]) cout << l+i << "\n";
