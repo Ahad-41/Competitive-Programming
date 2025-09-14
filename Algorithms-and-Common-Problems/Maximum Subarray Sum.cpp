@@ -7,7 +7,7 @@ signed main() {
     ll n; cin >> n;
     
     ll arr[n];
-    for(auto &u : arr) cin >> u;
+    for (auto &u : arr) cin >> u;
 
     ll maxSum = 0, tempSum = 0;
     for (ll i = 0; i < n; i++) {
@@ -41,3 +41,4 @@ for (ll i = 0; i < n; i++) {
     }
 }
 */
+
