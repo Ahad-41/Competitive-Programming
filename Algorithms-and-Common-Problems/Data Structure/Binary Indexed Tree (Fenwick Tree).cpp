@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
-const int N = 1e5+7;
-int tree[N];
+const ll N = 2e5+7;
+ll n, q, tree[N];
 
-int query(int index) {
-    int sum = 0;
+ll query(ll index) {
+    ll sum = 0;
     while (index) {
         sum += tree[index];
         index -= index & (-index); 
@@ -13,26 +14,24 @@ int query(int index) {
     return sum;
 }
 
-void update(int index, int value, int n) {
+void update(ll index, ll value) {
     while (index <= n) {
         tree[index] += value;
         index += index & (-index);
     }
 }
 
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    cin >> n >> q;
 
-int main()
-{
-    int n, q; cin >> n >> q;
-
-    int arr[n];
-    for (int i = 1; i <= n; i++) {
+    ll arr[n];
+    for (ll i = 1; i <= n; i++) {
         cin >> arr[i];
-        update(i, arr[i], n);
+        update(i, arr[i]);
     }
 
     while (q--) {
         
     }
-       
 }
