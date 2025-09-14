@@ -8,10 +8,10 @@ ll rand_gen(ll l, ll r) {
     return uniform_int_distribution<ll>(l, r) (rng);
 }
 
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
     ll n, q; cin >> n >> q;
+    
     ll cmp[n+1];
     for (ll i = 1; i <= n; i++) cmp[i] = rand_gen(1, 1e13);
 
