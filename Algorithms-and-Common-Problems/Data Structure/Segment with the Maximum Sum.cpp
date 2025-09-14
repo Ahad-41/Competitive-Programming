@@ -61,7 +61,6 @@ signed main() {
         segmentTree(1, 1, n);
         cout << tree[1].best << "\n";
 
-
         while (q--) {
             ll i, v; cin >> i >> v;
             update(1, 1, n, i, v);
