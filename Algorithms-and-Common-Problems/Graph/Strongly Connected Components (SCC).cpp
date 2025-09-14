@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
-const ll N = 1e5+7;
+const ll N = 2e5+7;
 vector<ll> adjList[N], revAdjList[N], order, component;
 ll n, m, visited[N];
 
@@ -34,8 +34,8 @@ void scc() {
     }
 }
 
-int main()
-{
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
     cin >> n >> m;
 
     while (m--) {
