@@ -3,11 +3,8 @@ ll knapsack(ll i, ll valueLeft) {
     if (i < 1) return 1e15;
     if (dp[i][valueLeft] != -1) return dp[i][valueLeft];
  
-    ll ans = knapsack(i - 1, valueLeft); // not taken
- 
-    if (valueLeft - cost[i] >= 0) {
-        ans = min(ans, knapsack(i - 1, valueLeft - cost[i]) + weight[i]); // taken
-    }
- 
+    ll ans = knapsack(i-1, valueLeft);
+    if (valueLeft-cost[i] >= 0) ans = min(ans, knapsack(i-1, valueLeft-cost[i]) + weight[i]);
+    
     return dp[i][valueLeft] = ans;
 }
