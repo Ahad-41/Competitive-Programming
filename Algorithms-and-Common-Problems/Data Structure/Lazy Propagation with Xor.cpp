@@ -3,7 +3,7 @@
 using namespace std;
 typedef long long ll;
 
-const ll N = 1e5+5;
+const ll N = 2e5+5;
 ll arr[N];
 
 struct info {
@@ -19,15 +19,14 @@ void push(ll currNode, ll left, ll right) {
             tree[leftNode].lazy ^= (1LL << i);
             tree[rightNode].lazy ^= (1LL << i);
 
-            tree[leftNode].cnt[i] = (mid-left+1) - tree[leftNode].cnt[i];
-            tree[rightNode].cnt[i] = (right-mid) - tree[rightNode].cnt[i];
+            tree[leftNode].cnt[i] = (mid-left+1)-tree[leftNode].cnt[i];
+            tree[rightNode].cnt[i] = (right-mid)-tree[rightNode].cnt[i];
         }
     }
 
     tree[currNode].lazy = 0;
 }
 
-// create treement tree ->
 void segmentTree(ll currNode, ll left, ll right) {
     if (left == right) {
         for (ll i = 0; i <= 20; i++) {
@@ -42,34 +41,32 @@ void segmentTree(ll currNode, ll left, ll right) {
     segmentTree(rightNode, mid+1, right);
 
     for (ll i = 0; i <= 20; i++) {
-        tree[currNode].cnt[i] = tree[leftNode].cnt[i] + tree[rightNode].cnt[i];
+        tree[currNode].cnt[i] = tree[leftNode].cnt[i]+tree[rightNode].cnt[i];
     }
 }
 
-// return the sum of i-th index to j-th index ->
 info query(ll currNode, ll left, ll right, ll i, ll j) {
-    if (i > right || j < left) return {};
+    if (i > right or j < left) return {};
     if (left >= i and right <= j) return tree[currNode];
     push(currNode, left, right);
     
     ll leftNode = currNode*2, rightNode = currNode*2 + 1;
     ll mid = left + (right-left)/2;
     info leftSum = query(leftNode, left, mid, i, j);
-    info rightSum = query(rightNode, mid + 1, right, i, j);
+    info rightSum = query(rightNode, mid+1, right, i, j);
 
     info ans;
-    for (ll i = 0; i <= 20; i++) ans.cnt[i] = leftSum.cnt[i] + rightSum.cnt[i];
+    for (ll i = 0; i <= 20; i++) ans.cnt[i] = leftSum.cnt[i]+rightSum.cnt[i];
     return ans;
 }
 
-// update in the i-th index to j-th index with new value -> 
 void update(ll currNode, ll left, ll right, ll i, ll j, ll newValue) {
-    if (i > right || j < left) return;
+    if (i > right or j < left) return;
     if (left >= i and right <= j) {
         for (ll i = 0; i <= 20; i++) {
             if (newValue & (1LL << i)) {
                 tree[currNode].lazy ^= (1LL << i);
-                tree[currNode].cnt[i] = (right-left+1) - tree[currNode].cnt[i];
+                tree[currNode].cnt[i] = (right-left+1)-tree[currNode].cnt[i];
             }
         }
         return;
@@ -82,14 +79,13 @@ void update(ll currNode, ll left, ll right, ll i, ll j, ll newValue) {
     update(leftNode, left, mid, i, j, newValue);
     update(rightNode, mid+1, right, i, j, newValue);
     
-    for (ll i = 0; i <= 20; i++) {
-        tree[currNode].cnt[i] = tree[leftNode].cnt[i] + tree[rightNode].cnt[i];
-    }
+    for (ll i = 0; i <= 20; i++) tree[currNode].cnt[i] = tree[leftNode].cnt[i]+tree[rightNode].cnt[i];
 }
 
-signed main()
-{
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
     ll n; cin >> n;
+
     for (ll i = 1; i <= n; i++) cin >> arr[i];
     segmentTree(1, 1, n);
 
@@ -101,7 +97,7 @@ signed main()
 
             auto it = query(1, 1, n, l, r);
             ll ans = 0;
-            for (ll i = 0; i <= 20; i++) ans += it.cnt[i] * (1LL << i);
+            for (ll i = 0; i <= 20; i++) ans += it.cnt[i]*(1LL << i);
 
             cout << ans << "\n";
         }
