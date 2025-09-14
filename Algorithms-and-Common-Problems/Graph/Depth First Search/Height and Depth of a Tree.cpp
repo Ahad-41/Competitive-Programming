@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
-const ll N = 1e5 + 7;
+const ll N = 2e5+7;
 vector<ll> adjList[N];
 ll height[N], depth[N];
 
@@ -16,10 +16,11 @@ void dfs(ll currNode, ll parent = -1) {
     }
 }
 
-int main()
-{
-    ll node, edge; cin >> node >> edge;
-    while (edge--) {
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    ll n, m; cin >> n >> m;
+
+    while (m--) {
         ll u, v; cin >> u >> v;
         adjList[u].push_back(v);
         adjList[v].push_back(u);
