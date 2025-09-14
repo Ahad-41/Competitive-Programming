@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 
-const ll N = 1e5+7;
+const ll N = 2e5+7;
 vector<ll> adjList[N];
 ll depth[N];
 
@@ -33,3 +33,4 @@ signed main() {
 
     cout << diameter;
 }
+
