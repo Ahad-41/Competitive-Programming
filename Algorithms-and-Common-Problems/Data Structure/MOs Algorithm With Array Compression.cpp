@@ -23,11 +23,10 @@ void remove(ll i) {
     if (!cnt[compressed[i]]) distinct--;
 }
 
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
-
     ll n, q; cin >> n >> q;
+    
     map<ll, ll> already;
     ll assign = 0;
     for (ll i = 1; i <= n; i++) {
@@ -54,5 +53,5 @@ signed main()
         ans[query[i].indx] = distinct;
     }
 
-    for (ll i = 1; i <= q; i++) cout << ans[i] << '\n';
+    for (ll i = 1; i <= q; i++) cout << ans[i] << "\n";
 }
