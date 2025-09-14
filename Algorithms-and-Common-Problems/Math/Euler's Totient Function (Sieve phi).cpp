@@ -1,26 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
-const int N = 1e6+5;
-int phi[N];
+const ll N = 1e6+5;
+ll phi[N];
 bool mark[N];
 
-void sievePhi(int n) {
-    for (int i = 1; i <= n; i++) phi[i] = i; 
+void sievePhi(ll n) {
+    for (ll i = 1; i <= n; i++) phi[i] = i; 
 
-    for (int i = 2; i <= n; i++) {
+    for (ll i = 2; i <= n; i++) {
         if (mark[i] == true) continue;
 
-        for (int j = i; j <= n; j += i) {
+        for (ll j = i; j <= n; j += i) {
             mark[j] = true;
-            phi[j] = phi[j] / i * (i-1);
+            phi[j] = phi[j]/i * (i-1);
         }
     }
 }
 
-int main()
-{
-    int n; cin >> n;
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    ll n; cin >> n;
     sievePhi(n);
-    cout << phi[10] << endl;
+
+    cout << phi[10] << "\n";
 }
