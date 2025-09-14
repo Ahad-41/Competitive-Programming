@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
  
 vector<ll> manachar(string s) {
     string temp;
@@ -28,15 +28,14 @@ vector<ll> manachar(string s) {
     return P;
 }
  
-signed main()
-{
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
     string s; cin >> s;
     
     string temp = s;
     reverse(s.begin(), s.end());
     if (s == temp) {
-        cout << s << endl;
+        cout << s << "\n";
         return 0;
     }
 
