@@ -22,7 +22,7 @@ struct info {
 } tree[N*3];
 
 ll query(ll currNode, ll left, ll right, ll i, ll j, ll carry = 0) {
-    if (i > right || j < left) return 0;
+    if (i > right or j < left) return 0;
     if (left >= i and right <= j) {
         return tree[currNode].sum + carry * (right - left + 1);
     }
@@ -36,7 +36,7 @@ ll query(ll currNode, ll left, ll right, ll i, ll j, ll carry = 0) {
 }
 
 void update(ll currNode, ll left, ll right, ll i, ll j, ll newValue) {
-    if (i > right || j < left) return;
+    if (i > right or j < left) return;
     if (left >= i and right <= j) {
         tree[currNode].sum += ((right - left + 1) * newValue);
         tree[currNode].prop += newValue;
@@ -53,10 +53,10 @@ void update(ll currNode, ll left, ll right, ll i, ll j, ll newValue) {
 
 signed main() {
     ios_base::sync_with_stdio(0); cin.tie();
-    ll tt; cin >> tt;
+    ll tc; cin >> tc;
 
     test:
-    while (tt--) {
+    while (tc--) {
         ll q; cin >> q;
 
         vector<ll> qq[q];
