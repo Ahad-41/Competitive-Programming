@@ -7,8 +7,7 @@ ll arr[N];
 
 struct info {
     long long prop, sum;
-} tree[N*3];
-
+} tree[N*4];
 
 void segmentTree(ll currNode, ll left, ll right) {
     if (left == right) {
@@ -21,27 +20,27 @@ void segmentTree(ll currNode, ll left, ll right) {
     segmentTree(leftNode, left, mid);
     segmentTree(rightNode, mid+1, right);
 
-    tree[currNode].sum = tree[leftNode].sum + tree[rightNode].sum;
+    tree[currNode].sum = tree[leftNode].sum+tree[rightNode].sum;
 }
 
 ll query(ll currNode, ll left, ll right, ll i, ll j, ll carry = 0) {
-    if (i > right || j < left) return 0;
+    if (i > right or j < left) return 0;
     if (left >= i and right <= j) {
-        return tree[currNode].sum + carry * (right - left + 1);
+        return tree[currNode].sum + carry*(right-left+1);
     }
     
     ll leftNode = currNode*2, rightNode = currNode*2 + 1;
     ll mid = left + (right-left)/2;
-    ll leftSum = query(leftNode, left, mid, i, j, carry + tree[currNode].prop);
-    ll rightSum = query(rightNode, mid + 1, right, i, j, carry + tree[currNode].prop);
+    ll leftSum = query(leftNode, left, mid, i, j, carry+tree[currNode].prop);
+    ll rightSum = query(rightNode, mid+1, right, i, j, carry+tree[currNode].prop);
 
     return leftSum+rightSum;
 }
 
 void update(ll currNode, ll left, ll right, ll i, ll j, ll newValue) {
-    if (i > right || j < left) return;
+    if (i > right or j < left) return;
     if (left >= i and right <= j) {
-        tree[currNode].sum += ((right - left + 1) * newValue);
+        tree[currNode].sum += ((right-left+1)*newValue);
         tree[currNode].prop += newValue;
         return;
     }
