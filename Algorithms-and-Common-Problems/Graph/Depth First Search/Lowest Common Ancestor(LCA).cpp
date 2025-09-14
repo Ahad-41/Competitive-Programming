@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
-const ll N = 1e5 + 7;
+const ll N = 2e5+7;
 vector<ll> adjList[N];
 ll par[N];
 
@@ -26,10 +26,11 @@ vector<ll> path(ll currNode) {
     return ans;
 }
 
-int main()
-{
-    ll node, edge; cin >> node >> edge;
-    while (edge--) {
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    ll n, m; cin >> n >> m;
+
+    while (m--) {
         ll u, v; cin >> u >> v;
         adjList[u].push_back(v);
         adjList[v].push_back(u);
@@ -38,15 +39,15 @@ int main()
     dfs(1);
 
     ll x, y; cin >> x >> y;
-    vector<ll> path_x = path(x);
-    vector<ll> path_y = path(y);
-    ll minLength = min(path_x.size(), path_y.size());
+    vector<ll> pathX = path(x);
+    vector<ll> pathY = path(y);
+    ll minLength = min(pathX.size(), pathY.size());
 
     ll lca = -1;
     for (ll i = 0; i < minLength; i++) {
-        if (path_x[i] == path_y[i]) lca = path_x[i];
+        if (pathX[i] == pathY[i]) lca = pathX[i];
         else break;
     }
 
-    cout << lca << endl;
+    cout << lca;
 }
