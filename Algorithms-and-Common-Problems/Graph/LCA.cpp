@@ -8,9 +8,9 @@ ll par[N][M+1], depth[N], sz[N];
 
 void dfs(ll currNode, ll p = 0) {
     par[currNode][0] = p;
-    depth[currNode] = depth[p] + 1;
+    depth[currNode] = depth[p]+1;
     sz[currNode] = 1;
-    for (ll i = 1; i <= M; i++) par[currNode][i] = par[par[currNode][i - 1]][i - 1];
+    for (ll i = 1; i <= M; i++) par[currNode][i] = par[par[currNode][i-1]][i-1];
     for (auto &u: adjList[currNode]) {
         if (u == p) continue;
         dfs(u, currNode);
@@ -28,19 +28,19 @@ ll lca(ll u, ll v) {
 
 ll kth(ll u, ll k) {
     assert(k >= 0);
-    for (ll i = 0; i <= M; i++) if (k & (1 << i)) u = par[u][i];
+    for (ll i = 0; i <= M; i++) if (k & (1LL << i)) u = par[u][i];
     return u;
 }
 
 ll dist(ll u, ll v) {
     ll l = lca(u, v);
-    return depth[u] + depth[v] - (depth[l] << 1);
+    return depth[u] + depth[v] - (depth[l] << 1LL);
 }
 
-//kth node from u to v, 0th node is u
+// kth node from u to v, 0th node is u
 ll go(ll u, ll v, ll k) {
     ll l = lca(u, v);
-    ll d = depth[u] + depth[v] - (depth[l] << 1);
+    ll d = depth[u] + depth[v] - (depth[l] << 1LL);
     assert(k <= d);
     if (depth[l] + k <= depth[u]) return kth(u, k);
     k -= depth[u] - depth[l];
@@ -56,7 +56,7 @@ signed main() {
         adjList[u].push_back(v);
         adjList[v].push_back(u);
     }
-    
+
     dfs(1);
     ll q; cin >> q;
     while (q--) {
