@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
 const ll N = 2e5+7;
 vector<ll> adjList[N], traverse;
@@ -41,9 +41,8 @@ void segmentTree(ll currNode, ll left, ll right) {
     tree[currNode] = merge(tree[leftNode], tree[rightNode]);
 }
 
-// return the sum of i-th index to j-th index ->
 node query(ll currNode, ll left, ll right, ll i, ll j) {
-    if (i > right || j < left) return {0, 0, (ll)1e18};
+    if (i > right or j < left) return {0, 0, (ll)1e18};
     if (left >= i and right <= j) return tree[currNode];
     
     ll leftNode = currNode*2, rightNode = currNode*2 + 1;
@@ -54,9 +53,8 @@ node query(ll currNode, ll left, ll right, ll i, ll j) {
     return merge(leftCalc, rightCalc);
 }
 
-// update in the i-th index with new value -> 
 void update(ll currNode, ll left, ll right, ll i, ll newValue) {
-    if (i > right || i < left) return;
+    if (i > right or i < left) return;
     if (left == right) {
         tree[currNode].sum = tree[currNode].max = tree[currNode].min = newValue;
         return;
@@ -71,8 +69,7 @@ void update(ll currNode, ll left, ll right, ll i, ll newValue) {
 }
 
 
-int main()
-{
+signed main() {
     ll n, q; cin >> n >> q;
     for (ll i = 1; i <= n; i++) cin >> arr[i];
 
