@@ -1,6 +1,7 @@
 const ll N = 1e6+7;
 const ll LG = 22;
 ll arr[N], t[N][LG];
+
 void build(ll n) {
     for (ll i = 1; i <= n; i++) t[i][0] = arr[i];
     for (ll k = 1; k < LG; k++) {
