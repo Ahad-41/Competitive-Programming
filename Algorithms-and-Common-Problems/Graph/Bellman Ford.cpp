@@ -1,13 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
-struct info
-{
+struct info {
     ll u, v, w;
 };
 
-const ll N = 1e5+7;
+const ll N = 2e5+7;
 vector<info> edge;
 ll cost[N];
 
@@ -30,9 +29,12 @@ bool bellmanFord(ll n, ll m) {
     return isCycle;
 }
 
-int main(){
-    ll t; cin >> t;
-    while (t--) {
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    ll tc; cin >> tc;
+
+    test:
+    while (tc--) {
         ll n, m; cin >> n >> m;
         edge.clear();
 
@@ -43,7 +45,6 @@ int main(){
         }
 
         bool isCycle = bellmanFord(n, m);
-
-        cout << (isCycle ? "Is Cycle Here" : "No Cycle") << endl;
+        cout << (isCycle ? "Is Cycle Here" : "No Cycle") << "\n";
     }
 }
