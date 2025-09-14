@@ -1,19 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define Pair pair<int, int> 
+typedef long long ll;
+typedef pair<ll, ll> Pair;
 
-const int N = 1e5 + 7;
-vector<pair<int, int>> adjList[N];
+const ll N = 2e5+7;
+vector<pair<ll, ll>> adjList[N];
 bool alreadyTaken[N];
-int node, edge;
+ll n, m;
 
-int mst(int currNode) {
+ll mst(ll currNode) {
     priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
     pq.push({0, currNode});
-    int minCost = 0;
+    ll minCost = 0;
 
     while (!pq.empty()) {
-        int cost = pq.top().first;
+        ll cost = pq.top().first;
         currNode = pq.top().second;
         pq.pop();
         if (alreadyTaken[currNode] == true) continue;
@@ -31,14 +32,15 @@ int mst(int currNode) {
     return minCost;
 }
 
-int main()
-{
-    cin >> node >> edge;
-    while (edge--) {
-        int u, v, w; cin >> u >> v >> w;
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    cin >> n >> m;
+    
+    while (m--) {
+        ll u, v, w; cin >> u >> v >> w;
         adjList[u].push_back({v, w});
         adjList[v].push_back({u, w});
     }
 
-    cout << mst(1) << endl;
+    cout << mst(1) << "\n";
 }
