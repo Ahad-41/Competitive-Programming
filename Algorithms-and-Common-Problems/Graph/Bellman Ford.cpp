@@ -39,8 +39,7 @@ signed main() {
         edge.clear();
 
         for (ll i = 1; i <= m; i++) {
-            ll u, v, w;
-            cin >> u >> v >> w;
+            ll u, v, w; cin >> u >> v >> w;
             edge.push_back({u, v, w});
         }
 
