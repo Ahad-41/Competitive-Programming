@@ -1,26 +1,27 @@
 // https://lightoj.com/problem/min-max-roads
 #include<bits/stdc++.h>
 using namespace std;
-typedef int ll;
+typedef long long ll;
 
 const ll N = 2e5+7, M = 20;
 vector<pair<ll, ll>> adjList[N];
 ll par[N][M+1], depth[N], sz[N], mn[N][M+1], mx[N][M+1];
 
-void dfs(ll u, ll p = 0, ll w = 0) {
-    par[u][0] = p;
-    mn[u][0] = w;
-    mx[u][0] = w;
-    depth[u] = depth[p] + 1;
-    sz[u] = 1;
+void dfs(ll currNode, ll p = 0, ll w = 0) {
+    par[currNode][0] = p;
+    mn[currNode][0] = w;
+    mx[currNode][0] = w;
+    depth[currNode] = depth[p] + 1;
+    sz[currNode] = 1;
     for (ll i = 1; i <= M; i++) {
-        par[u][i] = par[par[u][i-1]][i-1];
-        mn[u][i] = min(mn[u][i-1], mn[par[u][i-1]][i-1]);
-        mx[u][i] = max(mx[u][i-1], mx[par[u][i-1]][i-1]);
+        par[currNode][i] = par[par[currNode][i-1]][i-1];
+        mn[currNode][i] = min(mn[currNode][i-1], mn[par[currNode][i-1]][i-1]);
+        mx[currNode][i] = max(mx[currNode][i-1], mx[par[currNode][i-1]][i-1]);
     }
-    for (auto v : adjList[u]) if (v.first != p) {
-        dfs(v.first, u, v.second);
-        sz[u] += sz[v.first];
+    for (auto &u : adjList[currNode]) {
+        if (u.first == p) continue;
+        dfs(u.first, currNode, u.second);
+        sz[currNode] += sz[u.first];
     }
 }
 
