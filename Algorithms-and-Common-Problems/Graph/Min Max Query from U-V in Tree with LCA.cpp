@@ -3,7 +3,7 @@
 using namespace std;
 typedef int ll;
 
-const ll N = 1e5+7, M = 19;
+const ll N = 2e5+7, M = 20;
 vector<pair<ll, ll>> adjList[N];
 ll par[N][M+1], depth[N], sz[N], mn[N][M+1], mx[N][M+1];
 
@@ -56,11 +56,12 @@ ll getMax(ll u, ll lca) {
 
 signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
-    int tc, tt = 1; cin >> tc;
+    int tc; cin >> tc;
 
+    test:
     while (tc--) {
-        cout << "Case " << tt++ << ":\n";
         ll n; cin >> n;
+
         for (ll i = 1; i <= n; i++) {
             adjList[i].clear();
             sz[i] = depth[i] = 0;
