@@ -82,11 +82,11 @@ ll getMax(ll u, ll lca) {
 
 signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
-    ll tc, tt = 1; cin >> tc;
+    ll tc; cin >> tc;
 
     while (tc--) {
-        cout << "Case " << tt++ << ":\n";
         ll n, m; cin >> n >> m;
+
         for (ll i = 1; i <= n; i++) {
             adjList[i].clear();
             alreadyTaken[i] = false;
@@ -103,7 +103,7 @@ signed main() {
             adjList[v].push_back({u, w});
         }
 
-        mst(); // convert graph -> mst
+        mst();
         for (ll i = 1; i <= n; i++) adjList[i].clear();
         for (auto &u : v) {
             adjList[u.first.first].push_back({u.first.second, u.second});
