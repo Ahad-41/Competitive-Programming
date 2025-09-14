@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
 const ll N = 1e4+5;
 ll n, m, timer, disTime[N], low[N];
@@ -25,12 +25,14 @@ void dfs(ll currNode, ll parent) {
     if (children > 1 and parent == -1) isPoint[currNode] = true;
 }
 
-int main()
-{
-    ll tt; cin >> tt;
-    for (ll t = 1; t <= tt; t++) {
-        
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    ll tc; cin >> tc;
+
+    test:
+    while  (tc--) {
         cin >> n >> m;
+
         timer = 0;
         for (ll i = 1; i <= n; i++) {
             adjList[i].clear();
@@ -44,15 +46,10 @@ int main()
             adjList[v].push_back(u);
         }
 
-        for (ll i = 1; i <= n; i++) {
-            if (visited[i] == false) dfs(i, -1);
-        }
-
+        for (ll i = 1; i <= n; i++) if (visited[i] == false) dfs(i, -1);
         ll totalPoint = 0;
-        for (ll i = 1; i <= n; i++) {
-            totalPoint +=  (isPoint[i] == true);
-        }
-
-        cout << "Case " << t << ": " << totalPoint << endl;
+        for (ll i = 1; i <= n; i++) totalPoint += isPoint[i];
+        
+        cout << totalPoint << "\n";
     }
 }
