@@ -34,14 +34,12 @@ ll bfs (ll rootNode) {
     return mnCycle;
 }
 
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
-    int tc, tt = 1; cin >> tc;
+    int tc; cin >> tc;
 
     test:
     while (tc--) {
-        cout << "Case " << tt++ << ": ";
         cin >> n >> m;
         
         for (ll i = 0; i < n; i++) adjList[i].clear();
@@ -52,9 +50,7 @@ signed main()
         }
         
         ll ans = 1e18;
-        for (ll i = 0; i < n; i++) {
-            ans = min(ans, bfs(i));
-        }
+        for (ll i = 0; i < n; i++) ans = min(ans, bfs(i));
 
         if (ans == 1e18) cout << "impossible\n";
         else cout << ans << "\n";
