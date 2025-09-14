@@ -84,6 +84,7 @@ signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
     ll tc; cin >> tc;
 
+    test:
     while (tc--) {
         ll n, m; cin >> n >> m;
 
