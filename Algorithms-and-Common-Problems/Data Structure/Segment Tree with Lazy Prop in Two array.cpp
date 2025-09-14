@@ -1,12 +1,11 @@
-// Problem Link: https://atcoder.jp/contests/abc357/tasks/abc357_f
+// https://atcoder.jp/contests/abc357/tasks/abc357_f
 
-// May be I won't be a good programmer, but I will be a good human being.
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long int ll;
 
 const ll M = 998244353;
-const ll N = 2e5+5;
+const ll N = 2e5+7;
 
 struct node {
     ll sumA = 0, sumB = 0, ans = 0, propA = 0, propB = 0;
@@ -42,7 +41,7 @@ void propagate(ll currNode, ll left, ll right) {
 
 ll query(ll currNode, ll left, ll right, ll i, ll j) {
     propagate(currNode, left, right);
-    if (i > right || j < left) return 0;
+    if (i > right or j < left) return 0;
     if (left >= i and right <= j) return tree[currNode].ans;
     
     ll leftNode = currNode*2, rightNode = currNode*2 + 1;
@@ -55,7 +54,7 @@ ll query(ll currNode, ll left, ll right, ll i, ll j) {
 
 void updateA(ll currNode, ll left, ll right, ll i, ll j, ll newValue) {
     propagate(currNode, left, right);
-    if (i > right || j < left) return;
+    if (i > right or j < left) return;
     if (left >= i and right <= j) {
         tree[currNode].propA += newValue;
         return propagate(currNode, left, right); 
@@ -71,7 +70,7 @@ void updateA(ll currNode, ll left, ll right, ll i, ll j, ll newValue) {
 
 void updateB(ll currNode, ll left, ll right, ll i, ll j, ll newValue) {
     propagate(currNode, left, right);
-    if (i > right || j < left) return;
+    if (i > right or j < left) return;
     if (left >= i and right <= j) {
         tree[currNode].propB += newValue;
         return propagate(currNode, left, right); 
@@ -85,8 +84,7 @@ void updateB(ll currNode, ll left, ll right, ll i, ll j, ll newValue) {
     tree[currNode] = merge(tree[leftNode], tree[rightNode]);
 }
 
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
     ll n, q; cin >> n >> q;
 
@@ -94,6 +92,7 @@ signed main()
         ll a; cin >> a;
         updateA(1, 1, n, i, i, a);
     }
+
     for (ll i = 1; i <= n; i++) {
         ll b; cin >> b;
         updateB(1, 1, n, i, i, b);
@@ -105,7 +104,6 @@ signed main()
             ll i, j, v; cin >> i >> j >> v;
             type == 1 ? updateA(1, 1, n, i, j, v) : updateB(1, 1, n, i, j, v);
         }
-        
         else {
             ll i, j; cin >> i >> j;
             cout << query(1, 1, n, i, j) << "\n";
