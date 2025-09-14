@@ -68,8 +68,8 @@ void update(ll currNode, ll left, ll right, ll i, ll newValue) {
     tree[currNode] = merge(tree[leftNode], tree[rightNode]);
 }
 
-
 signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
     ll n, q; cin >> n >> q;
     for (ll i = 1; i <= n; i++) cin >> arr[i];
 
@@ -89,7 +89,6 @@ signed main() {
     // for (ll i = 1; i <= n; i++) cout << traverse[i] << " ";
     // cout << endl;
     
-
     // for (ll i = 1; i <= n; i++) cout << sz[i] << " ";
     // cout << endl;
     
