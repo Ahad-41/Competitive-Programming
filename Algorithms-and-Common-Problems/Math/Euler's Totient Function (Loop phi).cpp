@@ -1,22 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
-int phi(int n) {
-    int totalCoprime = n;
+ll phi(ll n) {
+    ll totalCoprime = n;
 
-    for (int i = 2; i * i <= n; i++) {
+    for (ll i = 2; i * i <= n; i++) {
         if (n % i == 0) {
             while (n % i == 0) n /= i;
-            totalCoprime -= totalCoprime / i;
+            totalCoprime -= totalCoprime/i;
         }
     }
 
-    if (n > 1) totalCoprime -= totalCoprime / n;
+    if (n > 1) totalCoprime -= totalCoprime/n;
     return totalCoprime;
 }
 
-int main()
-{
-    int n; cin >> n;
-    cout << phi(n) << endl; // print the total number of coprime of n -> from 1 to n
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    ll n; cin >> n;
+    cout << phi(n) << "\n"; 
 }
