@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
-typedef long long int ll;
 const ll M = 1e9+7;
 const ll N = 1e6+5;
 ll dp[N];
@@ -15,12 +15,10 @@ ll derangement(ll n) {
     return dp[n] = ans;
 }
 
-int main()
-{
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
     ll n; cin >> n;
+    
     memset(dp, -1, sizeof(dp));
-    cout << derangement(n) << endl;
-
-    return 0;
+    cout << derangement(n);
 }
