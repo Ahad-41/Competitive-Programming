@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 
-const ll N = 1e4+5;
+const ll N = 2e5+7;
 ll n, m, timer, disTime[N], low[N];
 vector<ll> adjList[N];
 bool visited[N], isPoint[N];
@@ -53,3 +53,4 @@ signed main() {
         cout << totalPoint << "\n";
     }
 }
+
