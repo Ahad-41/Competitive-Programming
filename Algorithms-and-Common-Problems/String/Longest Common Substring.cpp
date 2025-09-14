@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 typedef pair<ll, ll> Pair;
 #define all(a) (a).begin(), (a).end()
 
@@ -26,8 +26,7 @@ Pair getT(ll i, ll len) {
     return {ans1, ans2};
 }
 
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     p1[0] = 1;
     p2[0] = 1;
