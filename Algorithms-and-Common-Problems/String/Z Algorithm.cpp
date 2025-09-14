@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
 vector<ll> z_function(string s) {
     ll n = s.size();
@@ -19,8 +19,7 @@ vector<ll> z_function(string s) {
     return z;
 }
 
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     
     string s; cin >> s;
