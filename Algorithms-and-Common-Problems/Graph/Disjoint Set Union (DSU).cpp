@@ -1,14 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
-int Parent[10005], Size[10005];
+const ll N = 2e5+7;
+ll Parent[N], Size[N];
 
-int find(int v) {
+ll find(ll v) {
     if (Parent[v] == v) return v;
     return Parent[v] = find(Parent[v]);
 }
 
-void Union(int u, int v) {
+void Union(ll u, ll v) {
     u = find(u);
     v = find(v);
 
@@ -20,23 +22,21 @@ void Union(int u, int v) {
     
 }
 
-int main()
-{
-    int node, edge; cin >> node >> edge;
-    for (int i = 1; i <= node; i++) {
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    ll n, m; cin >> n >> m;
+
+    for (ll i = 1; i <= n; i++) {
         Parent[i] = i;
         Size[i] = 1;
     }
 
-    while (edge--) {
-        int u, v; cin >> u >> v;
+    while (m--) {
+        ll u, v; cin >> u >> v;
         Union(u, v);
     }
 
-    int connectedComponent = 0;
-    for (int i = 1; i <= node; i++) {
-        if (Parent[i] == i) connectedComponent++;
-    }
-
-    cout << connectedComponent << endl;
+    ll connectedComponent = 0;
+    for (ll i = 1; i <= n; i++) if (Parent[i] == i) connectedComponent++;
+    cout << connectedComponent;
 }
