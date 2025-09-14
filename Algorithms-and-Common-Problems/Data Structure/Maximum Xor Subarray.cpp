@@ -51,8 +51,8 @@ void Delete(node *currNode) {
 
 signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
-    
     ll n; cin >> n;
+    
     ll arr[n];
     for (auto &u : arr) cin >> u;
 
