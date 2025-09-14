@@ -2,13 +2,13 @@
 using namespace std;
 typedef long long ll;
 
-const ll N = 1e6+9;
+const ll N = 2e5+7;
 ll blockSize, arr[N], cnt[N], distinct, ans[N];
 
 struct query {
     ll l, r, indx;
     bool operator<(const query &x) const {
-        if (l / blockSize == x.l / blockSize) return ((l / blockSize) & 1) ? r > x.r : r < x.r;
+        if (l / blockSize == x.l / blockSize) return ((l / blockSize) & 1LL) ? r > x.r : r < x.r;
         return l / blockSize < x.l / blockSize;
     }
 } query[N];
@@ -23,8 +23,7 @@ void remove(ll i) {
     if (!cnt[arr[i]]) distinct--;
 }
 
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
 
     ll n, q; cin >> n >> q;
