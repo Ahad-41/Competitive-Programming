@@ -1,19 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
 struct AhoCorasick {
-    int N, P;
-    const int A = 26;
-    vector<vector<int>> next;
-    vector<int> link, out_link; // out_link[v] = nearest ancestor of v where an input pattern ended which is also a suffix link of v.
-    vector<vector<int>> out;
-    vector<int> count; // Stores the number of occurrences for each pattern
+    ll N, P;
+    const ll A = 26;
+    vector<vector<ll>> next;
+    vector<ll> link, out_link; // out_link[v] = nearest ancestor of v where an input pattern ended which is also a suffix link of v.
+    vector<vector<ll>> out;
+    vector<ll> count; // Stores the number of occurrences for each pattern
 
     AhoCorasick() : N(0), P(0) {
         node();
     }
 
-    int node() {
+    ll node() {
         next.emplace_back(A, 0);
         link.emplace_back(0);
         out_link.emplace_back(0);
@@ -22,12 +23,12 @@ struct AhoCorasick {
         return N++;
     }
 
-    inline int get(char c) {
+    inline ll get(char c) {
         return c - 'a';
     }
 
-    int add_pattern(const string& T) {
-        int u = 0;
+    ll add_pattern(const string& T) {
+        ll u = 0;
         for (auto c : T) {
             if (!next[u][get(c)]) next[u][get(c)] = node();
             u = next[u][get(c)];
@@ -38,12 +39,12 @@ struct AhoCorasick {
     }
 
     void compute() {
-        queue<int> q;
+        queue<ll> q;
         for (q.push(0); !q.empty(); ) {
-            int u = q.front();
+            ll u = q.front();
             q.pop();
-            for (int c = 0; c < A; ++c) {
-                int v = next[u][c];
+            for (ll c = 0; c < A; ++c) {
+                ll v = next[u][c];
                 if (!v) next[u][c] = next[link[u]][c];
                 else {
                     link[v] = u ? next[link[u]][c] : 0;
@@ -54,38 +55,34 @@ struct AhoCorasick {
         }
     }
 
-    int advance(int u, char c) {
+    ll advance(ll u, char c) {
         while (u && !next[u][get(c)]) u = link[u];
         u = next[u][get(c)];
         return u;
     }
 
     void match(const string& S) {
-        int u = 0;
+        ll u = 0;
         for (auto c : S) {
             u = advance(u, c);
-            for (int v = u; v; v = out_link[v]) {
+            for (ll v = u; v; v = out_link[v]) {
                 for (auto p : out[v]) count[p]++;
             }
         }
     }
 
     void print_counts() {
-        for (int i = 0; i < P; ++i) {
-            cout << count[i] << endl;
-        }
+        for (ll i = 0; i < P; i++)  cout << count[i] << "\n";
     }
 };
 
-// Main function
 signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
-    int tc, tt = 1; cin >> tc;
+    ll tc; cin >> tc;
 
     test:
     while (tc--) {
-        cout << "Case " << tt++ << ":\n";
-        int q; cin >> q;
+        ll q; cin >> q;
 
         string text; cin >> text;
         AhoCorasick ac;
