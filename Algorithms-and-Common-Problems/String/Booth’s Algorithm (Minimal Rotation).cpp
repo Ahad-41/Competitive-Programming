@@ -26,8 +26,8 @@ ll booths(string s) {
     return mnRotationIndx;
 }
 
-signed main()
-{
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
     string s; cin >> s;
     ll i = booths(s);
     cout << s.substr(i) + s.substr(0, i);
