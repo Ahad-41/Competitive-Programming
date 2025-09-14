@@ -7,7 +7,7 @@ ll fact[N], revFact[N];
 
 const ll M = 1e9+7;
 ll bigMod(ll base, ll power) {
-    if (!power) return 1; // base case
+    if (!power) return 1;
     ll result = bigMod(base, power/2);
     result = (result * result) % M;
     if (power & 1) result = (result * base) % M;
@@ -28,8 +28,7 @@ ll nCr(ll n, ll r) {
     return (upore*niche) % M;
 }
 
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
     
     fact[0] = 1;
