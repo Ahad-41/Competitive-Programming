@@ -1,14 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 
 const ll M = 1e9+7;
 const ll N = 1e6+5;
 ll base1 = 29, base2 = 31, base3 = 37, pwr1[N], pwr2[N], pwr3[N], hsh1[N], hsh2[N], hsh3[N];
  
-signed main()
-{
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
     pwr1[0] = 1;
     pwr2[0] = 1;
     pwr3[0] = 1;
@@ -22,7 +21,7 @@ signed main()
     ll n = s.size(), m = t.size();
 
     if (m > n) {
-        cout << 0 << endl;
+        cout << 0;
         return 0;
     }
  
@@ -60,5 +59,5 @@ signed main()
         if (currHash1 == targetHash1 and currHash2 == targetHash2 and currHash3 == targetHash3) cnt++;
     }
     
-    cout << cnt << endl;
+    cout << cnt;
 }
