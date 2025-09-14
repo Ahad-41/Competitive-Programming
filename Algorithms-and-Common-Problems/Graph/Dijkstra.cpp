@@ -1,14 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
+typedef pair<ll, ll> Pair;
 
-#define all(x) (x).begin(), (x).end()
-#define Pair pair<ll, ll>
-
-const ll N = 1e5+7;
+const ll N = 2e5+7;
 vector<Pair> adjList[N];
-ll prevNode[N];
-ll cost[N];
+ll prevNode[N], cost[N];
 vector<ll> path;
 
 void dijkstra(ll node) {
@@ -36,18 +33,19 @@ void dijkstra(ll node) {
     }
 }
 
-int main(){
-    ll node, edge; cin >> node >> edge;
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie();
+
+    ll n, m; cin >> n >> m;
     for (auto &u : adjList) u.clear();
 
-    while (edge--) {
-        ll u, v, w;
-        cin >> u >> v >> w;
+    while (m--) {
+        ll u, v, w; cin >> u >> v >> w;
         adjList[u].push_back({v, w});
         adjList[v].push_back({u, w});
     }
 
-    dijkstra(node);
+    dijkstra(n);
 
     // path.push_back(node);
     // while (prevNode[node] != 0) {
@@ -57,5 +55,5 @@ int main(){
     // reverse(all(path));
     
     // for (ll i = 1; i <= node; i++) cout << cost[i] << " ";
-    // cout << endl;
+    // cout << "\n";
 }
