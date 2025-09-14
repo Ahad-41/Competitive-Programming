@@ -1,5 +1,5 @@
 const ll N = 2e5+7;
-vector<Pair> adjList[N];
+vector<pair<ll, ll>> adjList[N];
 ll cost[N];
 
 void bfs(ll rootNode) {
