@@ -2,8 +2,8 @@
 using namespace std;
 typedef long long ll;
 
-const ll N = 3e5 + 9;
-const ll LG = 18;
+const ll N = 3e5+7;
+const ll LG = 20;
 
 void induced_sort(const vector<ll> &vec, ll val_range, vector<ll> &SA, const vector<bool> &sl, const vector<ll> &lms_idx) {
     vector<ll> l(val_range, 0), r(val_range, 0);
@@ -194,8 +194,7 @@ struct SuffixArray {
     }
 };
 
-signed main()
-{
+signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
     
     string s; cin >> s;
