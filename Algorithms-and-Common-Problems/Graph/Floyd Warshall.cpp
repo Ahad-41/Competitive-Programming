@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
 ll dist[505][505];
  
 void floydWarshall(ll v) { // Here v = number of vertex;
@@ -15,14 +15,11 @@ void floydWarshall(ll v) { // Here v = number of vertex;
     }
 }
  
-int main()
-{
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+signed main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
     ll n, m, q; cin >> n >> m >> q;
  
-    for (ll i = 1; i <= n; i++) {
-        for (ll j = 1; j <= n; j++) dist[i][j] = 1e18;
-    }
+    for (ll i = 1; i <= n; i++) for (ll j = 1; j <= n; j++) dist[i][j] = 1e18;
     for (ll i = 1; i <= n; i++) dist[i][i] = 0;
     
     while (m--) {
@@ -33,9 +30,7 @@ int main()
  
     while (q--) {
         ll a, b; cin >> a >> b;
-        if (dist[a][b] == 1e18) cout << -1 << endl;
-        else cout << dist[a][b] << endl;
+        if (dist[a][b] == 1e18) cout << "-1\n";
+        else cout << dist[a][b] << "\n";
     }
- 
-    return 0;
 }
