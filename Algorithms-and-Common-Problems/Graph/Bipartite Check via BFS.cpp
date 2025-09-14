@@ -1,15 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
+typedef long long ll;
  
-const ll N = 1e5+7;
+const ll N = 2e5+7;
 vector<ll> adjList[N];
 ll visited[N], color[N];
  
 signed main() {
-    ll n, edge; cin >> n >> edge;
+    ll n, m; cin >> n >> m;
     
-    while (edge--) {
+    while (m--) {
         ll u, v; cin >> u >> v;
         adjList[u].push_back(v);
         adjList[v].push_back(u);
