@@ -3,7 +3,7 @@ using namespace std;
 typedef long long ll;
 
 const ll N = 2e5+7;
-ll blockSize, arr[N], cnt[N], distinct, ans[N], compressed[N];
+ll blockSize, arr[N], cnt[N], distinct, ans[N];
 
 struct query {
     ll l, r, indx;
@@ -14,26 +14,27 @@ struct query {
 } query[N];
 
 void add(ll i) {
-    cnt[compressed[i]]++;
-    if (cnt[compressed[i]] == 1) distinct++;
+    cnt[arr[i]]++;
+    if (cnt[arr[i]] == 1) distinct++;
 }
 
 void remove(ll i) {
-    cnt[compressed[i]]--;
-    if (!cnt[compressed[i]]) distinct--;
+    cnt[arr[i]]--;
+    if (!cnt[arr[i]]) distinct--;
 }
 
 signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
     ll n, q; cin >> n >> q;
     
-    map<ll, ll> already;
-    ll assign = 0;
+    ll val[n+1];
     for (ll i = 1; i <= n; i++) {
         cin >> arr[i];
-        if (already.find(arr[i]) == already.end()) already[arr[i]] = assign++;
-        compressed[i] = already[arr[i]];
+        val[i] = arr[i];
     }
+
+    sort(val+1, val+n+1);
+    for (ll i = 1; i <= n; i++) arr[i] = lower_bound(val+1, val+n+1, arr[i]) - val;
 
     for (ll i = 1; i <= q; i++) {
         cin >> query[i].l >> query[i].r;
