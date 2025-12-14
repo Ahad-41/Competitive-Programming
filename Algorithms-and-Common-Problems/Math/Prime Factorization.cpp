@@ -1,6 +1,7 @@
 const ll N = 1e7+7;
 bool isComposite[N];
 vector<ll> prime;
+
 void sieve() {
 	for (ll i = 2; i < N; i++) {
 		if (!isComposite[i]) prime.push_back(i);
