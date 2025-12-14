@@ -82,6 +82,13 @@ ll isPointInConvex(vector<PT> &p, const PT& x) { // O(log n)
     return -1;
 }
 
+// return the area of the convex
+double area(vector<PT> &p) {
+    double ans = 0; int n = p.size();
+    for (int i = 0; i < n; i++) ans += cross(p[i], p[(i + 1) % n]);
+    return fabs(ans) * 0.5;
+}
+
 signed main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
     ll n; cin >> n;
