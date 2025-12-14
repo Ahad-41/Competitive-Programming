@@ -2,19 +2,17 @@
 using namespace std;
 typedef long long ll;
 
-const ll N = 1e6+7;
-bool check[N];
+const ll N = 1e7+5;
+bool isComposite[N];
 vector<ll> prime;
-
 void sieve() {
-    for (ll i = 3; i*i < N; i += 2) {
-        if (!check[i]) {
-            for (ll j = i*i; j < N; j += i) check[j] = true;
-        }
-    }
-
-    prime.push_back(2);
-    for (ll i = 3; i < N; i += 2) if (!check[i]) prime.push_back(i);
+	for (ll i = 2; i < N; i++) {
+		if (!isComposite[i]) prime.push_back(i);
+		for (ll j = 0; j < prime.size() and i * prime[j] < N; j++) {
+			isComposite[i * prime[j]] = true;
+			if (i % prime[j] == 0) break;
+		}
+	}
 }
 
 void segmentedSieve(ll l, ll r) {
@@ -45,3 +43,4 @@ signed main() {
         segmentedSieve(m, n);
     }
 }
+
