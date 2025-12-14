@@ -34,7 +34,7 @@ signed main() {
     }
 
     sort(val+1, val+n+1);
-    for (ll i = 1; i <= n; i++) arr[i] = lower_bound(val+1, val+n+1, arr[i]) - val;
+    for (ll i = 1; i <= n; i++) arr[i] = lower_bound(val+1, val+n+1, arr[i]) - val; // Coordinate Compression
 
     for (ll i = 1; i <= q; i++) {
         cin >> query[i].l >> query[i].r;
