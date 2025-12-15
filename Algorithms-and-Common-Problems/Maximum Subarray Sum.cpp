@@ -16,29 +16,6 @@ signed main() {
     }
 
     cout << maxSum << "\n";
-}  
-
-/* Time Complexity -> O(n^3)
-
-ll maxSum = 0;
-for (ll i = 0; i < n; i++) {
-    for (ll j = i; j < n; j++) {
-        ll tempSum = 0;
-        for (ll k = i; k <= j; k++) tempSum += arr[k];
-        maxSum = max(maxSum, tempSum);
-    }
 }
-*/
 
-/* Time Complexity -> O(n^2)
-
-ll maxSum = 0;
-for (ll i = 0; i < n; i++) {
-    ll tempSum = 0;
-    for (ll j = i; j < n; j++) {
-        tempSum += arr[j];
-        maxSum = max(maxSum, tempSum);
-    }
-}
-*/
 
